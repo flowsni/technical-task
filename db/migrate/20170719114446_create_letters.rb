@@ -8,5 +8,6 @@ class CreateLetters < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :letters, [:created_at, :mail_status]
   end
 end
