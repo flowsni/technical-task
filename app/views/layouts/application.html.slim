@@ -15,9 +15,9 @@ body
     ul class="nav navbar-nav navbar-right"
       - if user_signed_in?
         li
-          = link_to t(".Logout"), destroy_user_session_path, :method => :delete 
+          = link_to t(".logout", default: "Logout"), destroy_user_session_path, :method => :delete 
       - else
         li
-          = link_to t(".Login"), new_user_session_path
+          = link_to t(".login", default: "Login"), new_user_session_path
   = yield 
 
