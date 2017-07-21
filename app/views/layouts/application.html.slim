@@ -1,0 +1,23 @@
+doctype html
+html
+head
+  title Task
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true 
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true 
+  link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.css"
+  link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.css"
+  = csrf_meta_tags 
+
+body
+  = notice
+  = alert
+  div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
+    ul class="nav navbar-nav navbar-right"
+      - if user_signed_in?
+        li
+          = link_to t(:logout), destroy_user_session_path, :method => :delete 
+      - else
+        li
+          = link_to t(:login), new_user_session_path
+  = yield 
+
