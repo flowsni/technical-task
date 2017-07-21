@@ -49,4 +49,4 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'aasm'
-
+gem 'rails-i18n'
