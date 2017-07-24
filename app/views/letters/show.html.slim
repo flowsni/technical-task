@@ -1,0 +1,21 @@
+table class="table table-striped"
+  thead
+    tr
+      th= t('letter.user')
+      th= t('letter.url')
+      th= t('letter.email')
+      th= t('letter.mail_status')
+      th= t('letter.comment')
+      th= t('letter.created_at')
+      th= t('letter.updated_at')
+    tbody
+      - @letters.each_with_index do |letter|
+        tr
+          td= @user
+          td= letter.url
+          td= letter.email
+          td= letter.mail_status
+          td= letter.comment
+          td= letter.created_at
+          td= letter.updated_at
+
