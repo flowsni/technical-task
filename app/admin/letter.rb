@@ -5,6 +5,9 @@ ActiveAdmin.register Letter do
 
 permit_params :list, :of, :attributes, :on, :model, :url, :email, 
   :mail_status, :comment, :user_id
+
+
+
 #
 # or
 #
