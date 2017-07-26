@@ -1,5 +1,19 @@
 class LettersController < ApplicationController
   def index
+    @letters = current_user.letters
+    @aasm_states = Letter.aasm.states.map { |status| [status.name, status.name] } << ["all", "all"] 
+    if params[:mail_status]
+      @letters = @letters.where(:mail_status => params[:mail_status])
+    end
+    if params[:mail_status] == "all"
+      redirect_to root_path
+    end
+
+    if params[:from] && params[:to]
+      @letters = @letters.where(:created_at => params[:from]..params[:to])
+    end
+
+
   end
 
   def edit
@@ -19,6 +33,9 @@ class LettersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def filter_letter_by_status
   end
 
 end
