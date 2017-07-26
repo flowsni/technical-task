@@ -6,7 +6,7 @@ class LettersController < ApplicationController
     @letter = current_user.letters.find_by(id: params[:id])
     if @letter.nil?
       redirect_to root_path
-      flash[:notice] = "Error"
+      flash[:notice] = t(:error)
     else  
       @aasm_states = @letter.aasm.states(permitted: true).map { |status| [status.name, status.name] } << [@letter.aasm.current_state, @letter.aasm.current_state]  
     end

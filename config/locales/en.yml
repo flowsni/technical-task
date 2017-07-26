@@ -25,3 +25,4 @@ en:
   login: "Login"
   title: "Edit %{resource}"
   save: "Save"
+  error: "Error"
