@@ -10,9 +10,9 @@ table class="table table-striped"
       th= t('letter.updated_at')
       th= 
     tbody
-      - @letters.each_with_index do |letter|
+      - current_user.letters.each_with_index do |letter|
         tr
-          td= @user
+          td= current_user
           td= letter.url
           td= letter.email
           td= letter.mail_status

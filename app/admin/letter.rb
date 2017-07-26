@@ -7,6 +7,17 @@ permit_params :list, :of, :attributes, :on, :model, :url, :email,
   :mail_status, :comment, :user_id
 
 
+form do |f|
+  f.inputs "" do
+    f.input :user
+    f.input :url
+    f.input :email
+    f.input :comment
+    f.input :mail_status, input_html: { disabled: true }, label: 'Current state'
+    f.input :mail_status, label: 'Change state', as: :select, collection: f.letter.aasm.states(permitted: true).map(&:name)
+    actions
+  end  
+end
 
 #
 # or

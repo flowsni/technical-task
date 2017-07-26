@@ -2,7 +2,7 @@ class Letter < ActiveRecord::Base
   belongs_to :user
   include AASM
   
-  aasm do
+  aasm :column => :mail_status do
     state :new, :initial => true
     state :active, :ended
 

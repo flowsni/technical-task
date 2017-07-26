@@ -24,4 +24,4 @@ en:
   logout: "Logout"
   login: "Login"
   title: "Edit %{resource}"
-  
+  save: "Save"
