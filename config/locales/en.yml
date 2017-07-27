@@ -26,3 +26,4 @@ en:
   title: "Edit %{resource}"
   save: "Save"
   error: "Error"
+  submit: "Submit"
