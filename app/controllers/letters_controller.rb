@@ -1,19 +1,11 @@
 class LettersController < ApplicationController
   def index
+    @aasm_states = Letter.aasm.states.map { |status| [status.name, status.name] }  
+    from_date = params[:from].blank? ? Letter.first.created_at : params[:from]
+    to_date = params[:to].blank? ? DateTime.now : params[:to]
     @letters = current_user.letters
-    @aasm_states = Letter.aasm.states.map { |status| [status.name, status.name] } << ["all", "all"] 
-    if params[:mail_status]
-      @letters = @letters.where(:mail_status => params[:mail_status])
-    end
-    if params[:mail_status] == "all"
-      redirect_to root_path
-    end
-
-    if params[:from] && params[:to]
-      @letters = @letters.where(:created_at => params[:from]..params[:to])
-    end
-
-
+    @letters = @letters.where(:mail_status => params[:mail_status]) if params[:mail_status].present?
+    @letters = @letters.where(created_at: from_date..to_date) 
   end
 
   def edit
@@ -22,7 +14,8 @@ class LettersController < ApplicationController
       redirect_to root_path
       flash[:notice] = t(:error)
     else  
-      @aasm_states = @letter.aasm.states(permitted: true).map { |status| [status.name, status.name] } << [@letter.aasm.current_state, @letter.aasm.current_state]  
+      @aasm_states = @letter.aasm.states(permitted: true)
+      .map { |status| [status.name, status.name] } << [@letter.aasm.current_state, @letter.aasm.current_state]  
     end
   end
 
@@ -33,9 +26,6 @@ class LettersController < ApplicationController
     else
       render 'edit'
     end
-  end
-
-  def filter_letter_by_status
   end
 
 end
