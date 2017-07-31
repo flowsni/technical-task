@@ -1,7 +1,7 @@
 = render 'layouts/search'
-- if @letter.blank? || @status == 'new'
+- if @letter.blank?
   = t(:not_processed)
 - else
-  = t(:processed, resource: @user.email)
+  = t(:processed, resource: @letter_manager.email)
 
 

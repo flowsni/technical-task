@@ -30,15 +30,10 @@ class LettersController < ApplicationController
   end
 
   def search_letters
-    if (params[:email]).present?
-      @letter = Letter.all.where(:email => params[:email])
-      if @letter.present?
-        @user = @letter.first.user
-        @status = @letter.first.mail_status 
-      end
-    else
-      redirect_to root_path
-    end    
+    redirect_to root_path unless (params[:email]).present?
+    @letter = Letter.find_by(:email => params[:email])
+    return unless @letter.present?
+    @letter_manager = @letter.user
   end
 
 end

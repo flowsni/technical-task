@@ -1,9 +1,9 @@
 = form_tag root_path, method: "get" do
   = label_tag :mail_status
   = select_tag :mail_status, options_for_select(@aasm_states, params[:mail_status]), :include_blank => ''
-  = label_tag 'From'
+  = label_tag t(:from)
   = text_field_tag :from, params[:from]
-  = label_tag 'to'
+  = label_tag t(:to)
   = text_field_tag :to, params[:to]
   = submit_tag t(:submit), class: "btn btn-large btn-primary" 
 
