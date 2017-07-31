@@ -1,3 +1,14 @@
+= form_tag root_path, method: "get" do
+  = label_tag :mail_status
+  = select_tag :mail_status, options_for_select(@aasm_states, params[:mail_status]), :include_blank => ''
+  = label_tag 'From'
+  = text_field_tag :from, params[:from]
+  = label_tag 'to'
+  = text_field_tag :to, params[:to]
+  = submit_tag t(:submit), class: "btn btn-large btn-primary" 
+
+= render 'layouts/search'
+
 table class="table table-striped"
   thead
     tr
@@ -12,7 +23,7 @@ table class="table table-striped"
     tbody
       - @letters.each_with_index do |letter|
         tr
-          td= current_user
+          td= @user
           td= letter.url
           td= letter.email
           td= letter.mail_status
@@ -21,11 +32,3 @@ table class="table table-striped"
           td= letter.updated_at
           td= link_to 'edit', edit_letter_path(letter)
 
-= form_tag root_path, method: "get" do
-  = label_tag :mail_status
-  = select_tag :mail_status, options_for_select(@aasm_states, params[:mail_status]), :include_blank => ''
-  = label_tag 'From'
-  = text_field_tag :from, params[:from]
-  = label_tag 'to'
-  = text_field_tag :to, params[:to]
-  = submit_tag t(:submit), class: "btn btn-large btn-primary" 

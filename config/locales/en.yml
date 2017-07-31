@@ -27,3 +27,5 @@ en:
   save: "Save"
   error: "Error"
   submit: "Submit"
+  processed: "This email was processed by %{resource}"
+  not_processed: "This email was not processed"
