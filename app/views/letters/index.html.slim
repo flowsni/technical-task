@@ -23,7 +23,7 @@ table class="table table-striped"
     tbody
       - @letters.each_with_index do |letter|
         tr
-          td= @user
+          td= current_user
           td= letter.url
           td= letter.email
           td= letter.mail_status

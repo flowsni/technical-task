@@ -1,7 +1,6 @@
 class LettersController < ApplicationController
   before_action :authenticate_user!
   def index
-    @user = current_user
     @aasm_states = Letter.aasm.states.map { |status| [status.name, status.name] }  
     from_date = params[:from].blank? ? Letter.first.created_at : params[:from]
     to_date = params[:to].blank? ? DateTime.now : params[:to]
