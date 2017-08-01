@@ -30,10 +30,10 @@ class LettersController < ApplicationController
   end
 
   def search_letters
-    redirect_to root_path unless (params[:email]).present?
-    @letter = Letter.find_by(:email => params[:email])
-    return unless @letter.present?
-    @letter_manager = @letter.user
+    redirect_to root_path unless params[:email].present?
+    letter = Letter.find_by(:email => params[:email])
+    return unless letter
+    @letter_manager = letter.user
   end
 
 end
