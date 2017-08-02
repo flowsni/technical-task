@@ -17,7 +17,9 @@ index do |f|
   f.column :id
   f.column :email
   f.column :created_at
-  f.actions
+  f.actions do |user|
+    link_to 'Send message', new_message_admin_user_path(user)
+  end
 end
 
 form do |f|
@@ -27,6 +29,16 @@ form do |f|
     f.input :password_confirmation
   end
   f.actions
+end
+
+member_action :new_message, :method => :get do
+  @user = User.find(params[:id])
+end
+
+member_action :send_message, :method => :post do
+  @user = User.find(params[:id])
+  UserMailer.send_message(@user, params[:message]).deliver_now
+  redirect_to admin_users_path
 end
 
 end
