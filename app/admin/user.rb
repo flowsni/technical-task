@@ -33,12 +33,12 @@ end
 
 member_action :new_message, :method => :get do
   @user = User.find_by(id: params[:id])
-  redirect_to admin_users_path unless @user
+  return redirect_to admin_users_path unless @user
 end
 
 member_action :send_message, :method => :post do
   @user = User.find_by(id: params[:id])
-  redirect_to admin_users_path unless @user
+  return redirect_to admin_users_path unless @user
   UserMailer.send_message(@user, params[:message]).deliver_later
   redirect_to admin_users_path
 end
