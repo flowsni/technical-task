@@ -18,7 +18,7 @@ index do |f|
   f.column :email
   f.column :created_at
   f.actions do |user|
-    link_to 'Send message', new_message_admin_user_path(user)
+    link_to t(:send_message), new_message_admin_user_path(user)
   end
 end
 
@@ -33,11 +33,12 @@ end
 
 member_action :new_message, :method => :get do
   @user = User.find(params[:id])
+  return unless @user
 end
 
 member_action :send_message, :method => :post do
   @user = User.find(params[:id])
-  UserMailer.send_message(@user, params[:message]).deliver_now
+  UserMailer.send_message(@user, params[:message]).deliver_later
   redirect_to admin_users_path
 end
 

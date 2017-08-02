@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: "example.com"
+  default from: ENV["SMTP_USERNAME"]
   
   def send_message(user, message)
     @message = message
