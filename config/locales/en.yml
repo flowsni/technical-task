@@ -31,3 +31,6 @@ en:
   not_processed: "This email was not processed" 
   from: "From"
   to: "to"
+  message: "Message"
+  send: "Send"
+  send_message: "Send message"
