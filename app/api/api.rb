@@ -3,5 +3,5 @@ class API < Grape::API
   prefix :api
   format :json
 
-  mount V1::SomeApi
+  mount V1::LetterApi
 end
