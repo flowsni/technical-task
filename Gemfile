@@ -52,3 +52,5 @@ gem 'devise-bootstrap-views'
 gem 'aasm'
 gem 'rails-i18n'
 gem 'activeadmin'
+
+gem 'grape'
